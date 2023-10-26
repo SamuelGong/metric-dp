@@ -1,3 +1,6 @@
+import time
+begin_time = time.perf_counter()
+
 from mdp import metricDP
 from transformers import BertTokenizer, BertModel
 
@@ -30,7 +33,10 @@ priv_ids = mdp.privatize(ids, epsilon=epsilon, special_tokens=[0,100,101,102,103
 priv_text = tokenizer.decode(
     priv_ids
 )
-print('\n\n')
+
+end_time = time.perf_counter()
+duration = round(end_time - begin_time, 2)
+print(f'Done in {duration}s. Original text:')
 print(text)
-print('\n\n')
+print('\n\nNew privatized text:')
 print(priv_text)
