@@ -3,15 +3,14 @@ import numpy as np
 from annoy import AnnoyIndex
 
 class metricDP():
-   
     def __init__(self, vocabular, embedding, start_from=999):
 
         '''
-        Code in part from Amazon SageMaker, Vocabular [Dictionary] is a token to
-        index mapping, Embedding [Array] including special tokens such as [UNK],
-        [PAD], [CLS], [SEP], [MASK], or [unused...]. Code expects special tokens
-        at the front and regular tokens continuing from 'start_from'. Parameters
-        defaulted to BERT (base, uncased).
+        Code in part from Amazon SageMaker
+            Vocabular [Dictionary] is a token to index mapping
+            Embedding [Array] including special tokens such as [UNK], [PAD], [CLS], [SEP], [MASK], or [unused...].
+            Code expects special tokens at the front and regular tokens continuing from 'start_from'.
+        Parameters defaulted to BERT (base, uncased).
         '''
 				
         self.vocabular = vocabular
