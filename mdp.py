@@ -1,10 +1,9 @@
 import numpy as np
+from annoy import AnnoyIndex  # Approximate Nearest Neighbors Oh Yeah
 
-from annoy import AnnoyIndex
 
 class metricDP():
     def __init__(self, vocabular, embedding, start_from=999):
-
         '''
         Code in part from Amazon SageMaker
             Vocabular [Dictionary] is a token to index mapping
@@ -12,7 +11,6 @@ class metricDP():
             Code expects special tokens at the front and regular tokens continuing from 'start_from'.
         Parameters defaulted to BERT (base, uncased).
         '''
-				
         self.vocabular = vocabular
         self.embedding = embedding
 
@@ -33,11 +31,9 @@ class metricDP():
         self.ann.build(n_trees)
         
     def privatize(self, tokens, epsilon=10, special_tokens=[0,100,101,102,103]):
-
         ''' Privatize a numeralized text, preserving special tokens. '''
 
         def replace(token, epsilon):
-        
               random_vec = np.random.normal(size=self.embed_dim)
               normalized_vec = random_vec / np.linalg.norm(random_vec)
               magnitude = np.random.gamma(shape=self.embed_dim, scale=1/epsilon)
